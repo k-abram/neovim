@@ -1,0 +1,22 @@
+# Dependencies for this Neovim/Neovide setup (macOS) -- LazyVim
+
+# Prerequisite (not brew): git, make and a C compiler
+# needed for lazy.nvim and Tree-sitter parsers
+xcode-select --install
+
+# Editor
+brew install neovim
+brew install --cask neovide
+
+# Font (used by Neovide and Ghostty; Nerd Font provides icons for neo-tree)
+brew install --cask font-jetbrains-mono-nerd-font
+
+# Search tools (Space f f uses fd, Space / and Space s g use ripgrep)
+brew install ripgrep fd
+
+# LazyVim: git UI (Space g g) and the Tree-sitter CLI, which compiles
+# parsers for languages opened for the first time
+brew install lazygit tree-sitter-cli
+
+# Optional: terminal
+brew install --cask ghostty
