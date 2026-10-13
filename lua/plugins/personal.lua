@@ -35,6 +35,47 @@ return {
     },
   },
 
+  -- neo-tree, used only for these two tree views (Space e stays on Snacks explorer).
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" },
+    cmd = "Neotree",
+    keys = {
+      -- Right side: Snacks explorer (Space e) keeps the left side
+      { "<leader>be", "<cmd>Neotree right buffers toggle<CR>", desc = "Buffer explorer (tree)" },
+      { "<leader>ge", "<cmd>Neotree right git_status toggle<CR>", desc = "Git modified/untracked (tree)" },
+    },
+    opts = {
+      -- Close the tree as soon as a file is opened from it, and put the cursor
+      -- in that file (otherwise it can land in the Snacks explorer if it's open)
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file)
+            require("neo-tree.command").execute({ action = "close" })
+            vim.schedule(function()
+              local target = vim.fn.fnamemodify(file, ":p")
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                if vim.api.nvim_buf_get_name(buf) == target then
+                  vim.api.nvim_set_current_win(win)
+                  return
+                end
+              end
+            end)
+          end,
+        },
+      },
+      sources = { "filesystem", "buffers", "git_status" },
+      filesystem = { hijack_netrw_behavior = "disabled" }, -- leave folders to Snacks
+      buffers = {
+        follow_current_file = { enabled = true },
+        show_unloaded = true, -- include buffers restored from a session but not yet opened
+      },
+    },
+  },
+
   -- Syntax highlighting for the languages used before.
   {
     "nvim-treesitter/nvim-treesitter",
