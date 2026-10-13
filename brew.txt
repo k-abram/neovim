@@ -18,5 +18,8 @@ brew install ripgrep fd
 # parsers for languages opened for the first time
 brew install lazygit tree-sitter-cli
 
+# Yazi: terminal file manager
+brew install yazi
+
 # Optional: terminal
 brew install --cask ghostty
