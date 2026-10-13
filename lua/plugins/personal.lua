@@ -76,6 +76,22 @@ return {
     },
   },
 
+  -- Yazi file manager in a floating window (needs: brew install yazi)
+  {
+    "mikavilpas/yazi.nvim",
+    version = "*",
+    dependencies = { { "nvim-lua/plenary.nvim", lazy = true } },
+    cmd = "Yazi",
+    keys = {
+      { "<leader>fy", mode = { "n", "v" }, "<cmd>Yazi<CR>", desc = "Yazi (current file)" },
+      { "<leader>fY", "<cmd>Yazi cwd<CR>", desc = "Yazi (working directory)" },
+    },
+    opts = {
+      open_for_directories = false, -- leave folders to Snacks explorer
+      keymaps = { show_help = "<F1>" },
+    },
+  },
+
   -- Syntax highlighting for the languages used before.
   {
     "nvim-treesitter/nvim-treesitter",
