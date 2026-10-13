@@ -89,6 +89,11 @@ return {
     opts = {
       open_for_directories = false, -- leave folders to Snacks explorer
       keymaps = { show_help = "<F1>" },
+      -- Ctrl-s grep: use LazyVim's Snacks picker (yazi.nvim defaults to Telescope, which isn't installed)
+      integrations = {
+        grep_in_directory = "snacks.picker",
+        grep_in_selected_files = "snacks.picker",
+      },
     },
   },
 
