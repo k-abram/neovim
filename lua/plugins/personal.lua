@@ -5,7 +5,8 @@
 return {
   -- Colour schemes (switch with :colorscheme <name>, or Space u C to browse).
   -- tokyonight and catppuccin come with LazyVim.
-  { "navarasu/onedark.nvim", lazy = false, priority = 1000 },
+  -- style = "light" for light mode; set back to "dark" (or remove opts) for the dark version.
+  { "navarasu/onedark.nvim", lazy = false, priority = 1000, opts = { style = "light" } },
   { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
   { "rebelot/kanagawa.nvim", lazy = false, priority = 1000 },
   { "Mofiqul/vscode.nvim", lazy = false, priority = 1000 },
